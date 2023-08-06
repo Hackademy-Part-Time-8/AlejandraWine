@@ -14,3 +14,9 @@ body{
 .logo{
     height: 4em;
 }
+footer{
+    height: var(--footerheight);
+}
+main{
+    margin-bottom:var(--footerheight)
+}

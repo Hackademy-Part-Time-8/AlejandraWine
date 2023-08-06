@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 
 class BarController extends Controller
 {
@@ -21,7 +21,7 @@ class BarController extends Controller
         [12,"Vinoteca Euforia","Euforia en copas."]
 
     ];
-    function index (){
+    function index (Request $request){
        
         return view ('bars.index',["bares" =>self ::$bares]);
     }
@@ -38,7 +38,7 @@ class BarController extends Controller
         }
     
         if ($aux<0){
-    return redirect ()-> route ('bars.index');
+    return redirect ()-> route ('bars.index')->with('code','304')->with('message','Bar no encontrado');
         }
     
         return view ('bars.show',["bar" => self ::$bares[$aux]]);

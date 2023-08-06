@@ -9,7 +9,7 @@
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Edu+SA+Beginner&display=swap" rel="stylesheet">p
+<link href="https://fonts.googleapis.com/css2?family=Edu+SA+Beginner&display=swap" rel="stylesheet">
     <link href="{{ asset('css/misestilos.css')}}" rel="stylesheet" />
 
 </head>
@@ -43,8 +43,7 @@
     <main class=container>
 @yield('content')
     </main>
-    <footer class="blockquote-footer">&copy; {{env('APP_COPY')}}</footer>
-
+<x-footer/>
 </body>
 
 </html>
