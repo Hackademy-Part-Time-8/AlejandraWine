@@ -7,18 +7,18 @@ use Illuminate\Support\Facades\Request;
 class BarController extends Controller
 {
     private static $bares= [
-        [1,"Le Vignoble Parisien","Elegancia parisina y vinos selectos en armonía."],
-        [2, "Il Barolo D'Oro","Elegancia parisina y vinos selectos en armonía."],
-        [3,"Le Bistro du Vin","Encanto francés, deleite enológico."],
-        [4,"La Toscana Vinoteca","Encanto francés, deleite enológico."],
-        [5,"Le Cellier Romantique","Amor y vinos en un rincón."],
-        [6,"Vinoteca Éclat","Brillante selección, deleite exquisito."],
-        [7,"VinoVerso","Versos de vino, pasión compartida."],
-        [8,"Vinópolis","Ciudad de vinos, descubre su esencia."],
-        [9,"El Rincón de los Sentidos","Sabores que cautivan, vinos que emocionan."],
-        [10, "El Sabor del Terroir", "Esencia de la tierra."],
-        [11,"Cava del Ocaso", "Atardecer y vinos"],
-        [12,"Vinoteca Euforia","Euforia en copas."]
+        [1,"Le Vignoble Parisien","Parisian elegance and select wines in harmony."],
+        [2, "Il Barolo D'Oro","Parisian elegance and select wines in harmony."],
+        [3,"Le Bistro du Vin","French charm, oenological delight."],
+        [4,"La Toscana Vinoteca","French charm, oenological delight."],
+        [5,"Le Cellier Romantique","Love and wines in a corner."],
+        [6,"Vinoteca Éclat","Brilliant selection, exquisite delight."],
+        [7,"VinoVerso","Verses of wine, shared passion."],
+        [8,"Vinópolis","City of wines, discover its essence."],
+        [9,"El Rincón de los Sentidos","Captivating flavors, emotions in wines."],
+        [10, "El Sabor del Terroir", "Essence of the land."],
+        [11,"Cava del Ocaso", "Sunset and wines."],
+        [12,"Vinoteca Euforia","Euphoria in glasses."]
 
     ];
     function index (Request $request){

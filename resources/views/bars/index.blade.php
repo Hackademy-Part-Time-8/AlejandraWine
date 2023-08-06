@@ -4,7 +4,7 @@
 
 @section('content')
 
-        <h1>Listado de bares</h1>
+        <h1>Our Bar Selection</h1>
         <x-message code="{{Session ::get ('code')}}" message="{{Session::get('message')}}"/>
         <div class=row>
         @foreach ($bares as $bar) 
@@ -15,7 +15,7 @@
                 <h5 class="card-title">{{$bar[1]}}</h5>
                 <p class="card-text">{{$bar[2]}}</p>
 
-                <a href="{{route('bars.show',$bar[0])}}" class="btn btn-primary">Ver</a>
+                <a href="{{route('bars.show',$bar[0])}}" class="btn btn-primary">Go to bar</a>
             </div>
         </div>
         </div>
