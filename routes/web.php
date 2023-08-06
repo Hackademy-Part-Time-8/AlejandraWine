@@ -22,7 +22,11 @@ Route::get('/', function () {
 
 Route::get('/bar',[BarController::class, 'index'])->name('bars.index');
 
+Route::get('/bar/create',[BarController::class,'create'])->name('bars.create');
+Route::post('/bar/create',[BarController::class, 'store'])->name('bars.store');
+
 Route::get('/bar/{id}',[BarController::class,'show'])->name('bars.show');
+
 
 Route::get('/contacto',[ContactController::class, 'create'])->name('contact');
 Route::post('/contacto',[ContactController::class, 'store']); //no tengo que poner name de nuevo por que es la misma ruta

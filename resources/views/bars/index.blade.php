@@ -12,14 +12,16 @@
         <div class="card" style="width: 18rem;">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{$bar[1]}}</h5>
-                <p class="card-text">{{$bar[2]}}</p>
+                <h5 class="card-title">{{$bar->name}}</h5>
+                <p class="card-text">{{$bar->description}}</p>
 
-                <a href="{{route('bars.show',$bar[0])}}" class="btn btn-primary">Go to bar</a>
+                <a href="{{route('bars.show',$bar->id)}}" class="btn btn-primary">Go to bar</a>
             </div>
         </div>
         </div>
         @endforeach
         </div>
-
-        @endsection
+<div class = "d-flex justify-content-center p-4">
+<a href="{{route('bars.create')}}"class="btn btn-primary">Register your bar here!</a>
+</div>
+@endsection

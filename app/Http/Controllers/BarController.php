@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Request;
+//use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+
 
 class BarController extends Controller
 {
+    /*
     private static $bares= [
         [1,"Le Vignoble Parisien","Parisian elegance and select wines in harmony."],
         [2, "Il Barolo D'Oro","Parisian elegance and select wines in harmony."],
@@ -20,13 +24,15 @@ class BarController extends Controller
         [11,"Cava del Ocaso", "Sunset and wines."],
         [12,"Vinoteca Euforia","Euphoria in glasses."]
 
-    ];
+    ];*/
+
     function index (Request $request){
-       
-        return view ('bars.index',["bares" =>self ::$bares]);
+       $bares = DB::table('bars')->get();//get encuentra esa tabla
+        return view ('bars.index',["bares" =>$bares]);
     }
     public function show($id){
-     
+
+    /* 
         $aux = -1;
         $i=0;
        // dd($bares[$i]);
@@ -36,11 +42,21 @@ class BarController extends Controller
             }
             $i++;
         }
-    
-        if ($aux<0){
-    return redirect ()-> route ('bars.index')->with('code','304')->with('message','Bar no encontrado');
+    */
+    $bar =DB::table('bars')->find($id);//find busca por id
+
+    if ($bar == null){
+    return redirect ()-> route ('bars.index')->with('code','304')->with('message',"Sorry, we couldn't find that bar, try something different.");
         }
     
-        return view ('bars.show',["bar" => self ::$bares[$aux]]);
+        return view ('bars.show',["bar" => $bar]);
+    }
+    public function create(){
+        return view ('bars.create');
+    }
+    public function store(Request $request){
+
+        DB::table('bars')->insert(['name'=>$request->name,'description'=>$request->description]);//pide un array asociativo, hay que añadir los nombres de las columnas
+        return redirect ()-> route ('bars.index')->with('code','0')->with('message',"Congratulations! Your bar was uploaded successfully.");
     }
 }
