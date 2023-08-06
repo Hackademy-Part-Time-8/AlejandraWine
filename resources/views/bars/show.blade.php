@@ -12,13 +12,20 @@
             <div class="card-body">
                 <h5 class="card-title">{{$bar->name}}</h5>
                 <p class="card-text">{{$bar->description}}</p>
-                <a href="{{route('bars.show',$bar[0])}}" class="btn btn-primary">Go to Bar</a>
+                <a href="{{route('bars.show',$bar->id)}}" class="btn btn-primary">Go to Bar</a>
             </div>
         </div>
         </div>
 
         </div>
-        <div class="text-center">
+        <div class="d-flex justify-content-center">
+        <form method='POST' action="{{route ('bars.delete',$bar->id) }}" onsubmit = "return confirmar ('Are you sure you would like to delete this bar?','Notification');">
+            @csrf
+        <button type = "submit" class="btn btn-danger">Delete</button>
+        </form>
+       
+        <a href="{{route('bars.edit',$bar->id)}}" class="btn btn-primary">Edit</a>
         <a href="{{route('bars.index')}}" class="btn btn-primary">Return</a>
+
         </div>
 @endsection

@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Support\Facades\Request;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\BarRequest;
+
 
 class BarController extends Controller
-{
-    /*
+{   /*
     private static $bares= [
         [1,"Le Vignoble Parisien","Parisian elegance and select wines in harmony."],
         [2, "Il Barolo D'Oro","Parisian elegance and select wines in harmony."],
@@ -28,7 +29,7 @@ class BarController extends Controller
 
     function index (Request $request){
        $bares = DB::table('bars')->get();//get encuentra esa tabla
-        return view ('bars.index',["bares" =>$bares]);
+        return view ('bars.index',compact('bares'));//["bares" =>$bares]);
     }
     public function show($id){
 
@@ -49,14 +50,43 @@ class BarController extends Controller
     return redirect ()-> route ('bars.index')->with('code','304')->with('message',"Sorry, we couldn't find that bar, try something different.");
         }
     
-        return view ('bars.show',["bar" => $bar]);
+        return view ('bars.show',compact('bar'));//["bar" => $bar]); ESTO SE USARIA SI LA CLAVES NO FUERAN IGUAL
     }
+
+
+    //CREAR BAR
     public function create(){
         return view ('bars.create');
     }
-    public function store(Request $request){
+
+
+    //GUARDAR BAR
+    public function store(BarRequest $request){
+
 
         DB::table('bars')->insert(['name'=>$request->name,'description'=>$request->description]);//pide un array asociativo, hay que añadir los nombres de las columnas
         return redirect ()-> route ('bars.index')->with('code','0')->with('message',"Congratulations! Your bar was uploaded successfully.");
+    }
+
+
+    //MODIFICAR
+    public function edit($id){
+        $bar =DB::table('bars')->find($id);
+        if ($bar == null){
+            return redirect ()-> route ('bars.index')->with('code','304')->with('message',"Sorry, we couldn't find that bar, try something different.");
+    }
+    return view('bars.edit', compact('bar'));
+}
+    public function update(BarRequest $request, $id){
+        DB::table('bars')->where ('id',$id) ->update(['name' => $request -> name,'description' => $request -> description]);
+
+        return redirect ()-> route ('bars.index')->with('code','0')->with('message',"Congratulations! Your info was updated successfully.");
+
+    }
+
+    //BORRAR
+    public function delete ($id){
+        DB::table('bars')->delete($id);
+        return redirect ()-> route ('bars.index')->with('code','0')->with('message',"Your bar was deleted successfully.");
     }
 }

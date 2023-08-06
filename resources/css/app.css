@@ -1,3 +1,25 @@
+body{
+  color: #851907c9;
+  background-color: #e3dece38;
+  font-family: 'Edu SA Beginner', cursive;
+}
+.cabecera{
+  background-color: #851907c9; 
+  color: #e3dece;
+}
+.text-beige{
+color: #e3dece;
+}
+.logo{
+  height: 4em;
+}
+footer{
+  height: var(--footerheight);
+}
+main{
+  margin-bottom:var(--footerheight)
+}
+
 #popcorn {
     display: inline-block;
     width: 134px;
