@@ -18,6 +18,6 @@ class ContactController extends Controller
 
         //envia a esta direccion de correo:
         Mail ::to(env('MAIL_FROM_ADDRESS'))->send(new ContactNotification($name,$email,$message));
-        return view('home');
+        return back()->with ('code','0')->with('message','Your message was sent succesfully');//si pusiera return a la home y el usuario sigue recardando enviaria el emial muchas veces sobrecargando por ende la web
     }
 }

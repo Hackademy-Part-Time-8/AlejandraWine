@@ -9,7 +9,7 @@
 @elseif($code>0)
 <span class = "text-danger">{{$code}}
 @endif 
-{{$message}}
+{!!$message!!}
 </span>
 </div>
 @endif
