@@ -21,7 +21,7 @@
         <div class="d-flex justify-content-center">
         <form method='POST' action="{{route ('bars.delete',$bar->id) }}" onsubmit = "return confirmar ('Are you sure you would like to delete this bar?','Notification');">
             @csrf
-        <button type = "submit" class="btn btn-danger">Delete</button>
+        <button type = "submit" class="btn btn-primary">Delete</button>
         </form>
        
         <a href="{{route('bars.edit',$bar->id)}}" class="btn btn-primary">Edit</a>

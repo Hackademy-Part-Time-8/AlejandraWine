@@ -6,7 +6,10 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
+
 use App\Http\Requests\BarRequest;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Bar;
 
 
 class BarController extends Controller
@@ -27,11 +30,39 @@ class BarController extends Controller
 
     ];*/
 
-    function index (Request $request){
+
+    //------------------LISTADO BARES//--------------------------
+    
+    
+    //php artisan make:model Bar
+    public function index (){
+        $bares = Bar::orderBy('name')->get();
+        foreach($bares as $bar){
+            if(!isset($bar ->image)|| ($bar->image == '')){
+                $bar->image = asset('img/default.png');
+            }
+    
+        }
+        return view ('bars.index', compact('bares'));
+    }
+    public function indexQB (Request $request){
        $bares = DB::table('bars')->get();//get encuentra esa tabla
         return view ('bars.index',compact('bares'));//["bares" =>$bares]);
     }
-    public function show($id){
+
+
+
+    //-----------------------------MOSTRAR BAR//-------------------------------
+    
+    
+    public function show(Bar $bar){//creo una variable bar del modelo que es la que le paso con el copmpact
+        if(!isset($bar ->image)|| ($bar->image == '')){
+            $bar->image = asset('img/default.png');
+        }
+
+        return view ('bars.show',compact('bar'));           
+    }
+    
 
     /* 
         $aux = -1;
@@ -44,6 +75,7 @@ class BarController extends Controller
             $i++;
         }
     */
+    public function showQB($id){
     $bar =DB::table('bars')->find($id);//find busca por id
 
     if ($bar == null){
@@ -54,30 +86,85 @@ class BarController extends Controller
     }
 
 
-    //CREAR BAR
+
+
+//----------------------------//CREAR BAR//-----------------------------------------------
+    
+
+
     public function create(){
         return view ('bars.create');
     }
 
+    public function createQB(){
+        return view ('bars.create');
+    }
 
-    //GUARDAR BAR
+
+
+//----------------------------//GUARDAR BAR-//---------------------------------------------
+    
+
     public function store(BarRequest $request){
+        $image = '';
+        if($request ->hasFile('image')){
+            $image = Storage::url($request->file('image')->store('public/bars'));
+        }
+        $bar = Bar::create([
+            'name'          => $request -> name,
+            'description'   => $request -> description,
+            'image'         => $image
+        ]);
+        $bar->saveOrFail();
+        return redirect ()-> route ('bars.index')->with('code','0')->with('message',"Congratulations! Your bar was uploaded successfully.");
+    }
 
-
-        DB::table('bars')->insert(['name'=>$request->name,'description'=>$request->description]);//pide un array asociativo, hay que añadir los nombres de las columnas
+    public function storeQB(BarRequest $request){
+        $image = '';
+        if($request ->hasFile('image')){
+            $image = Storage::url($request->file('image')->store('public/bars'));
+        }
+        DB::table('bars')->insert([
+            'name'=>$request->name,
+            'description'=>$request->description,
+            'image'=>$image//
+        ]);//pide un array asociativo, hay que añadir los nombres de las columnas
         return redirect ()-> route ('bars.index')->with('code','0')->with('message',"Congratulations! Your bar was uploaded successfully.");
     }
 
 
-    //MODIFICAR
-    public function edit($id){
+
+
+    //--------------------------//MODIFICAR//-------------------------------------
+
+    public function edit(Bar $bar){
+        return view('bars.edit', compact('bar'));
+    }
+
+    public function editQB($id){
         $bar =DB::table('bars')->find($id);
         if ($bar == null){
             return redirect ()-> route ('bars.index')->with('code','304')->with('message',"Sorry, we couldn't find that bar, try something different.");
     }
     return view('bars.edit', compact('bar'));
 }
-    public function update(BarRequest $request, $id){
+
+
+
+//------------------------------------------------------------------------
+public function update(BarRequest $request, Bar $bar){
+    $image = '';
+    if ($request -> hasFile('image')){
+        $image = Storage ::url ($request ->file ('image')->store('public/bars'));
+        $bar->image =$image;
+    }
+    $bar->fill ($request->validated());
+
+    $bar -> saveOrFail();
+    return redirect ()-> route ('bars.index')->with('code','0')->with('message',"Congratulations! Your info was updated successfully.");
+}
+
+public function updateQB(BarRequest $request, $id){
         $image = '';
         if($request ->hasFile('image')){
             $image = Storage::url($request->file('image')->store('public/bars'));
@@ -92,9 +179,24 @@ class BarController extends Controller
 
     }
 
-    //BORRAR
-    public function delete ($id){
-        DB::table('bars')->delete($id);
+
+
+
+
+
+//----------------------------//BORRAR//------------------------------------------- (el parametro es el mismo que en las rutas)
+public function delete (Bar $bar){
+    try{
+        $bar ->deleteOrFail();
+    }catch (RuntimeException $e){
+        return redirect ()-> route ('bars.index')->with('code','400')->with('message',"Your bar could not be deleted successfully.");
+    }
         return redirect ()-> route ('bars.index')->with('code','0')->with('message',"Your bar was deleted successfully.");
     }
+
+
+public function deleteQB ($id){
+    DB::table('bars')->delete($id);
+    return redirect ()-> route ('bars.index')->with('code','0')->with('message',"Your bar was deleted successfully.");
+}
 }
