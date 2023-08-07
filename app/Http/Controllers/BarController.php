@@ -78,7 +78,15 @@ class BarController extends Controller
     return view('bars.edit', compact('bar'));
 }
     public function update(BarRequest $request, $id){
-        DB::table('bars')->where ('id',$id) ->update(['name' => $request -> name,'description' => $request -> description]);
+        $image = '';
+        if($request ->hasFile('image')){
+            $image = Storage::url($request->file('image')->store('public/bars'));
+        }
+        DB::table('bars')->where ('id',$id)->update([
+            'name'          => $request -> name,
+            'description'   => $request -> description,
+            'image'         => $image
+        ]);
 
         return redirect ()-> route ('bars.index')->with('code','0')->with('message',"Congratulations! Your info was updated successfully.");
 

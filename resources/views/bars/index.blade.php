@@ -10,7 +10,7 @@
         @foreach ($bares as $bar) 
         <div class="col-3 py-2 d-flex align-items-stretch">
         <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
+            <img src="{{$bar->image}}" class="card-img-top" alt="{{$bar->name}}">
             <div class="card-body">
                 <h5 class="card-title">{{$bar->name}}</h5>
                 <p class="card-text">{{$bar->description}}</p>

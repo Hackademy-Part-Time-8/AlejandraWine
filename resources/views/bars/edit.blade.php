@@ -5,10 +5,10 @@
 @section('content')
 <h1>Edit Bar</h1>
 
-
+        <x-msg-error :errors="$errors"/>
         <x-message code="{{Session ::get ('code')}}" message="{{Session::get('message')}}"/>
         <div class=row>
-        <form method = "POST" action = "{{route('bars.update',$bar->id)}}">
+        <form method = "POST" action = "{{route('bars.update',$bar->id)}}"  enctype="multipart/form-data">
             <!-- csrf es una validacion de seguriad. Viene dentro de laravel ya creada-->
             @csrf 
   <div class="mb-3">
@@ -24,6 +24,11 @@
     <textarea name="description" class="form-control" id="description" >{{$bar->description}}</textarea>
     <div id="descriptionHelp" class="form-text">Describe your bar in a few words.Try to be as original as possible so you can stand out!</div>
   </div>
+  <div class="mb-3">
+  <label for="image" class="form-label"></label>
+  <input class="image" type="file" id="image">
+  <div id="imageHelp" class="form-text">Upload your picture here</div>
+</div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
