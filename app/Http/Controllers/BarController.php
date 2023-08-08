@@ -154,6 +154,7 @@ class BarController extends Controller
 //------------------------------------------------------------------------
 public function update(BarRequest $request, Bar $bar){
     $image = '';
+    //dd($request);
     if ($request -> hasFile('image')){
         $image = Storage ::url ($request ->file ('image')->store('public/bars'));
         $bar->image =$image;

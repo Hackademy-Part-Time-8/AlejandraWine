@@ -21,12 +21,12 @@
 
   <div class="mb-3">
     <label for="description" class="form-label">Description</label>
-    <textarea name="description" class="form-control" id="description" >{{$bar->description}}</textarea>
+    <textarea name="description" class="form-control" id="description">{{old('description')}}</textarea> 
     <div id="descriptionHelp" class="form-text">Describe your bar in a few words.Try to be as original as possible so you can stand out!</div>
   </div>
   <div class="mb-3">
   <label for="image" class="form-label"></label>
-  <input class="image" type="file" id="image">
+  <input class="image" type="file" id="image" name="image">
   <div id="imageHelp" class="form-text">Upload your picture here</div>
 </div>
 
