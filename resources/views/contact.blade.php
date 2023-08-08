@@ -1,5 +1,5 @@
 
-@extends('layout.layout')
+@extends('layouts.layout')
 @section('title','Contacto')
 @section('content')
 
@@ -10,7 +10,7 @@
         <div class=row>
         <form method = "POST" action = "">
             <!-- csrf es una validacion de seguriad. Viene dentro de laravel ya creada-->
-            @csrf 
+            @csrf
   <div class="mb-3">
   <label for="name" class="form-label">Name</label>
     <input type="name" class="form-control" id="name" name="name" aria-describedby="nameHelp">

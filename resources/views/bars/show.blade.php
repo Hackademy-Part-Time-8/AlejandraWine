@@ -1,11 +1,11 @@
-@extends('layout.layout')
+@extends('layouts.layout')
 
 @section('title','Ver Bar')
 
 @section('content')
         <h1 class="text-center">Show bar</h1>
         <div class="row d-flex justify-content-center">
-       
+
         <div class="col-3 py-2 ">
         <div class="card" style="width: 18rem;">
             <img src="{{$bar->image}}" class="card-img-top" alt="{{$bar->name}}">
@@ -19,12 +19,15 @@
 
         </div>
         <div class="d-flex justify-content-center">
+            @auth
+
         <form method='POST' action="{{route ('bars.delete',$bar->id) }}" onsubmit = "return confirmar ('Are you sure you would like to delete this bar?','Notification');">
             @csrf
         <button type = "submit" class="btn btn-primary">Delete</button>
         </form>
-       
+
         <a href="{{route('bars.edit',$bar->id)}}" class="btn btn-primary">Edit</a>
+        @endauth
         <a href="{{route('bars.index')}}" class="btn btn-primary">Return</a>
 
         </div>

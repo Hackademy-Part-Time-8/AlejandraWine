@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layouts.layout')
 
 @section('title','Listado de bares')
 
@@ -7,7 +7,7 @@
         <h1>Our Bar Selection</h1>
         <x-message code="{{Session ::get ('code')}}" message="{{Session::get('message')}}"/>
         <div class=row>
-        @foreach ($bares as $bar) 
+        @foreach ($bares as $bar)
         <div class="col-3 py-2 d-flex align-items-stretch">
         <div class="card" style="width: 18rem;">
         @if(isset($bar ->image) && ($bar->image != ''))
@@ -26,6 +26,14 @@
         @endforeach
         </div>
 <div class = "d-flex justify-content-center p-4">
+
+@auth <!--Esto lo mostrara solo a los usuarios registrados-->
 <a href="{{route('bars.create')}}"class="btn btn-primary">Register your bar here!</a>
+@else
+<p>Only registered users can upload bars
+    <a href="{{route('register')}}"> Register here now!</a>
+</p>
+
+@endauth
 </div>
 @endsection

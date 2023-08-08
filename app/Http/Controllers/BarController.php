@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use RuntimeException;
 
 
 use App\Http\Requests\BarRequest;
@@ -32,16 +34,23 @@ class BarController extends Controller
 
 
     //------------------LISTADO BARES//--------------------------
-    
-    
+
+
     //php artisan make:model Bar
     public function index (){
+    $user = Auth::user();
+    if(!is_null($user)){
         $bares = Bar::orderBy('name')->get();
+    }
+    else{
+        $bares = Bar::orderByDesc('id')->limit(6)->get();
+    }
+
         foreach($bares as $bar){
             if(!isset($bar ->image)|| ($bar->image == '')){
                 $bar->image = asset('img/default.png');
             }
-    
+
         }
         return view ('bars.index', compact('bares'));
     }
@@ -53,18 +62,18 @@ class BarController extends Controller
 
 
     //-----------------------------MOSTRAR BAR//-------------------------------
-    
-    
+
+
     public function show(Bar $bar){//creo una variable bar del modelo que es la que le paso con el copmpact
         if(!isset($bar ->image)|| ($bar->image == '')){
             $bar->image = asset('img/default.png');
         }
 
-        return view ('bars.show',compact('bar'));           
+        return view ('bars.show',compact('bar'));
     }
-    
 
-    /* 
+
+    /*
         $aux = -1;
         $i=0;
        // dd($bares[$i]);
@@ -81,7 +90,7 @@ class BarController extends Controller
     if ($bar == null){
     return redirect ()-> route ('bars.index')->with('code','304')->with('message',"Sorry, we couldn't find that bar, try something different.");
         }
-    
+
         return view ('bars.show',compact('bar'));//["bar" => $bar]); ESTO SE USARIA SI LA CLAVES NO FUERAN IGUAL
     }
 
@@ -89,7 +98,7 @@ class BarController extends Controller
 
 
 //----------------------------//CREAR BAR//-----------------------------------------------
-    
+
 
 
     public function create(){
@@ -103,7 +112,7 @@ class BarController extends Controller
 
 
 //----------------------------//GUARDAR BAR-//---------------------------------------------
-    
+
 
     public function store(BarRequest $request){
         $image = '';

@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('layouts.layout')
 
 @section('title','Nuevo bar')
 
@@ -10,18 +10,18 @@
         <div class=row>
         <form method = "POST" action = "{{route('bars.update',$bar->id)}}"  enctype="multipart/form-data">
             <!-- csrf es una validacion de seguriad. Viene dentro de laravel ya creada-->
-            @csrf 
+            @csrf
   <div class="mb-3">
   <label for="name" class="form-label">Bar Name</label>
     <input class="form-control" id="name" name="name" value="{{$bar->name}}" aria-describedby="nameHelp">
     <div id="namelHelp" class="form-text">What is your bar called?</div>
   </div>
-    
+
 
 
   <div class="mb-3">
     <label for="description" class="form-label">Description</label>
-    <textarea name="description" class="form-control" id="description">{{old('description')}}</textarea> 
+    <textarea name="description" class="form-control" id="description">{{$bar->description}}</textarea>
     <div id="descriptionHelp" class="form-text">Describe your bar in a few words.Try to be as original as possible so you can stand out!</div>
   </div>
   <div class="mb-3">

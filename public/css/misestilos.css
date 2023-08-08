@@ -5,11 +5,11 @@ body{
     font-family: 'Edu SA Beginner', cursive;
 }
 .cabecera{
-    background-color: #851907c9; 
+    background-color: #851907c9;
     color: #e3dece;
 }
 .text-beige{
- color: #e3dece;
+ color: #e3dece !important;
 }
 .logo{
     height: 4em;
@@ -20,3 +20,4 @@ footer{
 main{
     margin-bottom:var(--footerheight)
 }
+
