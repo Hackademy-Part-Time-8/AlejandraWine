@@ -26,4 +26,10 @@ class BarRequest extends FormRequest
             'description'=>'required|max:250',
         ];
     }
+    //public function messages()
+    //{
+       // return [
+         //   'name'->esto es para poner mensajes de aviso
+        //];
+    //}//
 }

@@ -4,12 +4,10 @@ body{
   font-family: 'Edu SA Beginner', cursive;
 }
 .cabecera{
-  background-color: #851907c9; 
-  color: #e3dece;
+  background-color: #EFEFEF;
+  color: #201F1F;
 }
-.text-beige{
-color: #e3dece;
-}
+
 .logo{
   height: 4em;
 }
@@ -26,7 +24,7 @@ main{
     height: 120px;
     background-image: url('https://popper.js.org/images/popcorn-box.svg');
   }
-  
+
   #tooltip {
     display: inline-block;
     background: #ffffff;
@@ -36,7 +34,7 @@ main{
     font-size: 13px;
     border-radius: 4px;
   }
-  
+
   #arrow,
   #arrow::before {
     position: absolute;
@@ -44,30 +42,29 @@ main{
     height: 8px;
     background: inherit;
   }
-  
+
   #arrow {
     visibility: hidden;
   }
-  
+
   #arrow::before {
     visibility: visible;
     content: '';
     transform: rotate(45deg);
   }
-  
+
   #tooltip[data-popper-placement^='top'] > #arrow {
     bottom: -4px;
   }
-  
+
   #tooltip[data-popper-placement^='bottom'] > #arrow {
     top: -4px;
   }
-  
+
   #tooltip[data-popper-placement^='left'] > #arrow {
     right: -4px;
   }
-  
+
   #tooltip[data-popper-placement^='right'] > #arrow {
     left: -4px;
   }
-  

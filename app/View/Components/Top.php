@@ -10,13 +10,13 @@ use App\Models\Bar;
 
 class Top extends Component
 {
-    public $num = 4;
+    public $num = 3;
     public $type = 'bars';
     public $bares;
     /**
      * Create a new component instance.
      */
-    public function __construct($type,$num = 4)
+    public function __construct($type,$num = 3)
     {
         //
         $this->num=$num;

@@ -1,5 +1,5 @@
 <div class=row>
-    @foreach ($bares as $bar)
+    @foreach ($bares as $key => $bar)
     <div class="col-3 py-2 d-flex align-items-stretch">
     <div class="card" style="width: 18rem;">
     @if(isset($bar ->image) && ($bar->image != ''))

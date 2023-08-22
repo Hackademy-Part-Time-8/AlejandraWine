@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use RuntimeException;
-
+use Illuminate\Support\Facades\DB;
 
 use App\Http\Requests\BarRequest;
 use Illuminate\Support\Facades\Storage;
+
 use App\Models\Bar;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
+
+use RuntimeException;
 
 
 class BarController extends Controller
@@ -38,12 +40,13 @@ class BarController extends Controller
 
     //php artisan make:model Bar
     public function index (){
+    Paginator ::useBootstrapFive();
     $user = Auth::user();
     if(!is_null($user)){
-        $bares = Bar::orderBy('name')->get();
+        $bares = Bar::orderBy('name')->paginate(env('APP_PAGE',12));
     }
     else{
-        $bares = Bar::orderByDesc('id')->limit(6)->get();
+        $bares = Bar::orderByDesc('id')->limit(4)->get();
     }
 
         foreach($bares as $bar){
@@ -53,6 +56,7 @@ class BarController extends Controller
 
         }
         return view ('bars.index', compact('bares'));
+
     }
     public function indexQB (Request $request){
        $bares = DB::table('bars')->get();//get encuentra esa tabla

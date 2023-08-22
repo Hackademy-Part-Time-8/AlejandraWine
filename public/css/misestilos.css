@@ -1,16 +1,19 @@
 
 body{
-    color: #851907c9;
-    background-color: #e3dece38;
-    font-family: 'Edu SA Beginner', cursive;
+    color: #3c3939;
+    background-color: #EFEFEF;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+.text-red{
+    color: #8B3030;
 }
 .cabecera{
-    background-color: #851907c9;
-    color: #e3dece;
+    background-color: #EFEFEF !important;
+
 }
 .text-beige{
- color: #e3dece !important;
-}
+    color: #3c3939 !important;
+   }
 .logo{
     height: 4em;
 }
@@ -20,4 +23,21 @@ footer{
 main{
     margin-bottom:var(--footerheight)
 }
+.vector{
+    margin-top: 5%;
+    margin-bottom: 5%;
 
+}
+.texto-style {
+    width: 19em;
+    height: 19em;
+    margin-left: 9%;
+    margin-top: 5%;
+
+}
+.container-style{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+    background-color:#e6e6e677 ;
+}

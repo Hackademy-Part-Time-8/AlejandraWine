@@ -5,6 +5,7 @@
 @section('content')
 
         <h1>Our Bar Selection</h1>
+
         <x-message code="{{Session ::get ('code')}}" message="{{Session::get('message')}}"/>
         <div class=row>
         @foreach ($bares as $bar)
@@ -25,15 +26,41 @@
         </div>
         @endforeach
         </div>
-<div class = "d-flex justify-content-center p-4">
+        <div class = "d-flex justify-content-center p-4">
 
-@auth <!--Esto lo mostrara solo a los usuarios registrados-->
-<a href="{{route('bars.create')}}"class="btn btn-primary">Register your bar here!</a>
-@else
-<p>Only registered users can upload bars
-    <a href="{{route('register')}}"> Register here now!</a>
-</p>
+            @auth <!--Esto lo mostrara solo a los usuarios registrados-->
+            <a href="{{route('bars.create')}}"class="btn btn-primary">Register your bar here!</a>
+            @else
+            <p>Only registered users can upload bars
+                <a href="{{route('register')}}"> Register here now!</a>
+            </p>
 
-@endauth
-</div>
+            @endauth
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <ul class="pagination">
+                   <li class="page-item">
+                    <a class="page-link" href="{{route('bars.index') . '?' . $bares->getPageName () . '=1' }}" rel="prev" aria-label="Inicio">‹</a>
+                   </li>
+
+
+             @for ($i = 1; $i <= $bares->lastPage () ; $i++)
+                @if ($i == $bares->currentPage())
+                <li class="page-item active" aria-current="page">
+                       <span class="page-link">{{ $i}}</span>
+                 </li>
+                @else
+                <li class="page-item">
+                       <a class="page-link" href="{{ route('bars.index') . '?' . $bares->getPageName () . '=' . $i}}">{{ $i }}</a>
+                </li>
+
+                @endif
+             @endfor
+             <li class="page-item">
+             <a class="page-link" href="{{route('bars.index') . '?' . $bares->getPageName () . '=' . $bares->lastPage () }}"rel="next" aria-label="Ultimo">›</a>
+             </li>
+             </ul>
+             </div>
+
 @endsection
