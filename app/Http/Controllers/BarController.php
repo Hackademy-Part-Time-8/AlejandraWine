@@ -218,7 +218,9 @@ public function updateQB(BarRequest $request, $id){
 //----------------------------//BORRAR//------------------------------------------- (el parametro es el mismo que en las rutas)
 public function delete (Bar $bar){
     try{
+        if(isset($bar->user)&&($bar->user->id == Auth::user()->id)){
         $bar ->deleteOrFail();
+    }
     }catch (RuntimeException $e){
         return redirect ()-> route ('bars.index')->with('code','400')->with('message',"Your bar could not be deleted successfully.");
     }

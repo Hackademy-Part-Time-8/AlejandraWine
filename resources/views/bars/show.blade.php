@@ -16,7 +16,7 @@
                 <small class="card-text" style ="font-size: 0.5rem">Uploaded by:{{$bar->user->name}}</small>
                 @endisset
                 <br>
-                
+
             </div>
         </div>
         </div>
