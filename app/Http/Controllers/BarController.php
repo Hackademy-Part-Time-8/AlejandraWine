@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Bar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\Paginator;
+use App\Models\User;
 
 use RuntimeException;
 
@@ -57,6 +58,16 @@ class BarController extends Controller
         }
         return view ('bars.index', compact('bares'));
 
+    }
+    public function proposals(User $user){
+        $bares = Bar::whereBelongsTo($user)->paginate(env('APP_PAGE',12));
+        foreach($bares as $bar){
+            if(!isset($bar ->image)|| ($bar->image == '')){
+                $bar->image = asset('img/default.png');
+            }
+
+        }
+        return view ('bars.index', compact('bares', 'user'));
     }
     public function indexQB (Request $request){
        $bares = DB::table('bars')->get();//get encuentra esa tabla

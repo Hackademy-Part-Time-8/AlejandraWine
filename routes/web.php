@@ -35,7 +35,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::post('/bar/delete/{bar}',[BarController::class, 'delete'])->name('bars.delete');
 
 });
-Route::get ('/bar/proposals/{user}',[BarController::class],'proposals')->name('bars.proposals');
+Route::get ('/bar/proposals/{user}',[BarController::class,'proposals'])->name('bars.proposals');
 Route::get('/bar/{bar}',[BarController::class,'show'])->name('bars.show');//antes el parametro era id, pero para hacer la dependency injection lo cambio por el nombre de la variable del modelo
 
 Route::resource('/wine',WineController::class)->parameters(['wines']);

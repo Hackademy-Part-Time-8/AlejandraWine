@@ -3,8 +3,16 @@
 @section('title','Listado de bares')
 
 @section('content')
-
+        @if (isset($user)&&(Auth::user()!==null)&&($user->id == Auth::user()->id))
+        <h1>My contributions</h1>
+        @else
         <h1>Our Bar Selection</h1>
+        @isset($user)
+        <h3>By {{$user ->name}} :</h3>
+        @endisset
+        @endif
+
+
 
         <x-message code="{{Session ::get ('code')}}" message="{{Session::get('message')}}"/>
         <div class=row>
@@ -23,7 +31,8 @@
                 <a href="{{route('bars.show',$bar->id)}}" class="btn btn-primary">Go to bar</a>
                 @isset($bar->user)
                 <br>
-                <small class="card-text" style ="font-size: 0.5rem">Uploaded by: {{$bar->user->name}}</small>
+                <small class="card-text" style ="font-size: 0.5rem">Uploaded by:
+                    <a href="{{route('bars.proposals',$bar->user)}}">{{$bar->user->name}}</a></small>
                 <br>
                 @endisset
             </div>
@@ -46,7 +55,7 @@
             <div class="d-flex justify-content-center">
                 <ul class="pagination">
                    <li class="page-item">
-                    <a class="page-link" href="{{route('bars.index') . '?' . $bares->getPageName () . '=1' }}" rel="prev" aria-label="Inicio">‹</a>
+                    <a class="page-link" href="{{'?' . $bares->getPageName () . '=1' }}" rel="prev" aria-label="Inicio">‹</a>
                    </li>
 
 
@@ -57,13 +66,13 @@
                  </li>
                 @else
                 <li class="page-item">
-                       <a class="page-link" href="{{ route('bars.index') . '?' . $bares->getPageName () . '=' . $i}}">{{ $i }}</a>
+                       <a class="page-link" href="{{  '?' . $bares->getPageName () . '=' . $i}}">{{ $i }}</a>
                 </li>
 
                 @endif
              @endfor
              <li class="page-item">
-             <a class="page-link" href="{{route('bars.index') . '?' . $bares->getPageName () . '=' . $bares->lastPage () }}"rel="next" aria-label="Ultimo">›</a>
+             <a class="page-link" href=" '?' . $bares->getPageName () . '=' . $bares->lastPage () }}"rel="next" aria-label="Ultimo">›</a>
              </li>
              </ul>
              </div>
