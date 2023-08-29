@@ -38,6 +38,27 @@ main{
 .container-style{
     display: flex;
     justify-content: center;
-    margin-top: 5%;
     background-color:#e6e6e677 ;
+
+}
+.MapContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#mapaSvg{
+
+width: 80%;
+height: 80%;
+fill: #692121;
+}
+
+.fondodifuminado{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#e6e6e6d4 ;
+    color: #3c3939;
 }

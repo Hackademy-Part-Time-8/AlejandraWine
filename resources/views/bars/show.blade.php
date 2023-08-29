@@ -12,7 +12,11 @@
             <div class="card-body">
                 <h5 class="card-title">{{$bar->name}}</h5>
                 <p class="card-text">{{$bar->description}}</p>
-                <a href="{{route('bars.show',$bar->id)}}" class="btn btn-primary">Go to Bar</a>
+                @isset($bar->user)
+                <small class="card-text" style ="font-size: 0.5rem">Uploaded by:{{$bar->user->name}}</small>
+                @endisset
+                <br>
+                
             </div>
         </div>
         </div>
@@ -20,13 +24,14 @@
         </div>
         <div class="d-flex justify-content-center">
             @auth
-
+            @if (isset($bar->user)&& Auth::user()->id ==$bar->user->id)
         <form method='POST' action="{{route ('bars.delete',$bar->id) }}" onsubmit = "return confirmar ('Are you sure you would like to delete this bar?','Notification');">
             @csrf
         <button type = "submit" class="btn btn-primary">Delete</button>
         </form>
 
         <a href="{{route('bars.edit',$bar->id)}}" class="btn btn-primary">Edit</a>
+        @endif
         @endauth
         <a href="{{route('bars.index')}}" class="btn btn-primary">Return</a>
 

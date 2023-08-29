@@ -128,6 +128,7 @@ class BarController extends Controller
             'description'   => $request -> description,
             'image'         => $image
         ]);
+        $bar->user_id = Auth::user()->id;//para que guarde que usario lo sube
         $bar->saveOrFail();
         return redirect ()-> route ('bars.index')->with('code','0')->with('message',"Congratulations! Your bar was uploaded successfully.");
     }
@@ -151,7 +152,12 @@ class BarController extends Controller
     //--------------------------//MODIFICAR//-------------------------------------
 
     public function edit(Bar $bar){
-        return view('bars.edit', compact('bar'));
+        if(isset($bar->user)&&($bar->user->id == Auth::user()->id)){
+           return view('bars.edit', compact('bar'));
+        }
+        else{return redirect ()-> route ('bars.index')->with('code','200')->with('message',"Only the creator can edit the bar info");
+
+        }
     }
 
     public function editQB($id){

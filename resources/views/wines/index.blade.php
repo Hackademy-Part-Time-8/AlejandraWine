@@ -6,7 +6,7 @@
 <x-message code="{{Session ::get ('code')}}" message="{{Session::get('message')}}"/>
 <div id="divScroll"class=row>
 @foreach ($wines as $wine)
-<x-wine :wine ='$wine'/>
+<x-wine :wine="$wine"/> <!--No poner espacios cuando sean componentes y usar comillas dobles-->
 @endforeach
 </div>
 <div class = "d-flex justify-content-center p-4">

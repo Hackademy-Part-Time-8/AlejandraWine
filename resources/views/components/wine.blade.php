@@ -1,5 +1,6 @@
 <div class="col-3 py-2 d-flex align-items-stretch">
     <div class="card" style="width: 18rem;">
+
     @if(isset($wine ->image) && ($wine->image != ''))
         <img src="{{$wine->image}}" class="card-img-top" alt="{{$wine->name}}">
     @else

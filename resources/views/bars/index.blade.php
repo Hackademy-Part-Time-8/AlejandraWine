@@ -21,6 +21,11 @@
                 <p class="card-text">{{$bar->description}}</p>
 
                 <a href="{{route('bars.show',$bar->id)}}" class="btn btn-primary">Go to bar</a>
+                @isset($bar->user)
+                <br>
+                <small class="card-text" style ="font-size: 0.5rem">Uploaded by: {{$bar->user->name}}</small>
+                <br>
+                @endisset
             </div>
         </div>
         </div>
@@ -37,7 +42,7 @@
 
             @endauth
             </div>
-
+            @if(method_exists($bares,'getPageName'))
             <div class="d-flex justify-content-center">
                 <ul class="pagination">
                    <li class="page-item">
@@ -62,5 +67,7 @@
              </li>
              </ul>
              </div>
+            @endisset
+
 
 @endsection

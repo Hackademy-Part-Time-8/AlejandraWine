@@ -9,5 +9,8 @@ class Bar extends Model
 {
     use HasFactory;
     protected $fillable =['name','description','image'];
-    //protected $guard = ['id'];
+    //protected $guard = ['id']; metodos empiezan minuscula, clases mayusculas
+    public function user(){
+        return $this -> belongsTo(User::class);
+    }
 }
