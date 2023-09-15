@@ -25,6 +25,20 @@
     <textarea name="description" class="form-control" id="description">{{old('description')}}</textarea>
     <div id="descriptionHelp" class="form-text">Describe your bar in a few words.Try to be as original as possible so you can stand out!</div>
   </div>
+  <div class="mb-3 d-flex row">
+    <label for="wines" class="form-label">Wine list</label>
+    @foreach ($wines as $wine )
+    <div class="form-check col">
+        <input class= "form-check-input" type="checkbox" value="{{$wine->id}}" id="wine{{$wine->id}}" name="wines[]">
+        <label class="form-check-label" for="wine{{$wine->id}}">
+            {{$wine->name}}
+        </label>
+      </div>
+    @endforeach
+
+    </div>
+
+
   <div class="mb-3">
   <label for="image" class="form-label"></label>
   <input class="image" type="file" id="image" name="image">

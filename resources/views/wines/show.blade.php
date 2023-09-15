@@ -12,8 +12,19 @@
             <div class="card-body">
                 <h5 class="card-title">{{$wine->name}}</h5>
                 <p class="card-text">{{$wine->description}}</p>
+                <p class= "card-text">
+                    @foreach ($wine->bars as $bar)
+                    <span class="badge text-bg-primary">
+                    <a href="{{route('bars.show',$bar)}}" class = "nav-link">{{$bar->name}}</a></span>
+
+                    @endforeach
+                </p>
+                <p class= "card-text">{{$wine->winery}}</p>
+                <p class= "card-text">{{$wine->price}} $</p>
+                <p class= "card-text">{{$wine->vol}}% </p>
+
+
                 
-                <a href="{{route('wine.show',$wine->id)}}" class="btn btn-primary">Go to wine</a>
             </div>
         </div>
         </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Wine;
+use App\Models\Bar;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class WineController extends Controller
     {
         //
 
-        $wines = Wine::orderBy('name')->paginate(3);
+        $wines = Wine::orderBy('name')->paginate(4);
         if ($request->ajax()) {
             $ret = '';
 
@@ -37,7 +38,8 @@ class WineController extends Controller
     public function create()
     {
         //
-        return view ('wines.create');
+        $bars = Bar::orderBy('name')->get();
+        return view ('wines.create',compact('bars'));
     }
 
     /**
@@ -47,13 +49,15 @@ class WineController extends Controller
     {
         //
         try {
+
             $wine = Wine::create ([
                  'name' => $request->name,
                  'description' => $request->description,
                  'winery' => $request->winery,
-                 'price' => $request->price,
+                  'price' => $request->price,
                  'vol' => $request->vol
              ]);
+             $wine->bars()->attach($request->bars);
              $wine->saveOrFail ();
 
         }
@@ -82,6 +86,7 @@ class WineController extends Controller
     public function edit(Wine $wine)
     {
         //
+        $bars =  Bar::orderBy('name')->get();
         return view('wines.edit',compact('wine'));
     }
 
@@ -97,6 +102,8 @@ class WineController extends Controller
             $wine->winery = $request->winery;
             $wine->price = $request->price;
             $wine->vol = $request->vol;
+
+            $wine->bars()->sync($request->bars);
 
             $wine->saveOrFail();
         }
@@ -115,6 +122,7 @@ class WineController extends Controller
     {
         //
         try{
+            $wine->bars()->detach();
             $wine->deleteOrFail();
             return redirect()->route('wine.index')->with('code',0)->with('message','Your wine has been removed!');
         }

@@ -13,8 +13,15 @@
                 <h5 class="card-title">{{$bar->name}}</h5>
                 <p class="card-text">{{$bar->description}}</p>
                 @isset($bar->user)
-                <small class="card-text" style ="font-size: 0.5rem">Uploaded by:{{$bar->user->name}}</small>
+                <small class="card-text" style ="font-size: 0.5rem">Uploaded by: {{$bar->user->name}}</small>
                 @endisset
+                <p class= "card-text">
+                    @foreach ($bar->wines as $wine)
+                    <span class="badge text-bg-primary">
+                    <a href="{{route('wine.show',$wine)}}" class = "nav-link">{{$wine->name}}</a></span>
+
+                    @endforeach
+                </p>
                 <br>
 
             </div>

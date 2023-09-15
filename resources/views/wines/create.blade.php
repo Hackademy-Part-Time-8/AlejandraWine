@@ -24,6 +24,18 @@
     <textarea name="description" class="form-control" id="description">{{old('description')}}</textarea>
     <div id="descriptionHelp" class="form-text">Describe your wine in a few words.Try to be as original as possible so you can stand out!</div>
   </div>
+  <div class="mb-3 d-flex row">
+    <label for="bars" class="form-label">Where to find it</label>
+    @foreach ($bars as $bar)
+    <div class="form-check col">
+        <input class="form-check-input" type="checkbox" value="{{$bar->id}}" id="bar_{{$bar->id}}" name="bars[]">
+        <label class="form-check-label" for="bar_{{$bar->id}}">
+            {{$bar->name}}
+        </label>
+    </div>
+    @endforeach
+</div>
+
   <div class="mb-3">
     <label for="winery" class="form-label">Winery</label>
       <input class="form-control" id="winery" name="winery" value= "{{old('winery')}}" aria-describedby="wineryHelp">

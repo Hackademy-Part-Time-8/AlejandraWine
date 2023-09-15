@@ -5,10 +5,10 @@
 @endif
 
 @if($code==0)
-<span class ="text-info">
+<span class ="text-red">
 @elseif($code>0)
 <span class = "text-danger">{{$code}}
-@endif 
+@endif
 {!!$message!!}
 </span>
 </div>

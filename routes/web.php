@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BarController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WineController;
 use App\Models\Bar;
 /*
@@ -15,10 +16,9 @@ use App\Models\Bar;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/',[HomeController::class, 'home'])->name('home');
 ///home route tiene que ser asi en fortify
-Route::get('/', function () {
-    return view('home');
-})->name('index');
+
 
 Route::get('/home', function(){
     return redirect()->route('index');

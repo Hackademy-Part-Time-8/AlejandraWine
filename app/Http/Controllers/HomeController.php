@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Http;
 class HomeController extends Controller
 {
     /**
@@ -13,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+       // $this->middleware('auth');
     }
 
     /**
@@ -23,6 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $endpoint = 'https://api.chucknorris.io/jokes/random';
+        try{
+            $response = Http::get($endpoint,[]);
+            $json = $response->json();
+            $quote = $json['value'];
+
+        }catch(Exception $e){
+            return view('home');
+
+        }
+        
+        return view('home',compact('quote'));
     }
 }

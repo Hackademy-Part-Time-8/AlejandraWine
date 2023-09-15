@@ -18,7 +18,8 @@
         </div>
       </div>
       <div class="carousel-item">
-        <x-top type="bars" num="4" class="d-block w-100"/>/>
+        <x-2container type="bars" num="4" class="d-block w-100"/>
+        <div class="carousel-caption d-none d-md-block">
 
       </div>
     </div>

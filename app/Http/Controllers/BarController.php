@@ -13,6 +13,7 @@ use App\Models\Bar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\Paginator;
 use App\Models\User;
+use App\Models\Wine;
 
 use RuntimeException;
 
@@ -117,11 +118,15 @@ class BarController extends Controller
 
 
     public function create(){
-        return view ('bars.create');
+        $wines = Wine::orderBy('name')->get();
+
+        return view ('bars.create',compact('wines'));
     }
 
     public function createQB(){
-        return view ('bars.create');
+
+        $wines= Wine::orderBy('name')->get();
+        return view ('bars.create', compact('wines'));
     }
 
 
@@ -139,6 +144,8 @@ class BarController extends Controller
             'description'   => $request -> description,
             'image'         => $image
         ]);
+        $bar->wines()->attach($request->wines);
+
         $bar->user_id = Auth::user()->id;//para que guarde que usario lo sube
         $bar->saveOrFail();
         return redirect ()-> route ('bars.index')->with('code','0')->with('message',"Congratulations! Your bar was uploaded successfully.");
@@ -164,7 +171,8 @@ class BarController extends Controller
 
     public function edit(Bar $bar){
         if(isset($bar->user)&&($bar->user->id == Auth::user()->id)){
-           return view('bars.edit', compact('bar'));
+            $wines = Wine::orderBy('name')->get();
+           return view('bars.edit', compact('bar','wines'));
         }
         else{return redirect ()-> route ('bars.index')->with('code','200')->with('message',"Only the creator can edit the bar info");
 
@@ -189,6 +197,7 @@ public function update(BarRequest $request, Bar $bar){
         $image = Storage ::url ($request ->file ('image')->store('public/bars'));
         $bar->image =$image;
     }
+    $bar->wines()->sync($request->wines);
     $bar->fill ($request->validated());
 
     $bar -> saveOrFail();
@@ -219,6 +228,7 @@ public function updateQB(BarRequest $request, $id){
 public function delete (Bar $bar){
     try{
         if(isset($bar->user)&&($bar->user->id == Auth::user()->id)){
+        $bar->wines()->detach();
         $bar ->deleteOrFail();
     }
     }catch (RuntimeException $e){

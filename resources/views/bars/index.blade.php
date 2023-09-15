@@ -45,7 +45,7 @@
             @auth <!--Esto lo mostrara solo a los usuarios registrados-->
             <a href="{{route('bars.create')}}"class="btn btn-primary">Register your bar here!</a>
             @else
-            <p>Only registered users can upload bars
+            <p>Only registered users can upload bars and see the whole collection
                 <a href="{{route('register')}}"> Register here now!</a>
             </p>
 
