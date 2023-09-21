@@ -22,19 +22,20 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function home()
     {
         $endpoint = 'https://api.chucknorris.io/jokes/random';
         try{
-            $response = Http::get($endpoint,[]);
+            $response = Http::withoutVerifying()->get($endpoint,[]);
             $json = $response->json();
             $quote = $json['value'];
 
         }catch(Exception $e){
+
             return view('home');
 
         }
-        
+
         return view('home',compact('quote'));
     }
 }

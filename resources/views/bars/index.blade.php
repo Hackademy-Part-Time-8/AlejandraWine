@@ -3,6 +3,7 @@
 @section('title','Listado de bares')
 
 @section('content')
+
         @if (isset($user)&&(Auth::user()!==null)&&($user->id == Auth::user()->id))
         <h1>My contributions</h1>
         @else
@@ -15,6 +16,7 @@
 
 
         <x-message code="{{Session ::get ('code')}}" message="{{Session::get('message')}}"/>
+
         <div class=row>
         @foreach ($bares as $bar)
         <div class="col-3 py-2 d-flex align-items-stretch">
@@ -42,12 +44,14 @@
         </div>
         <div class = "d-flex justify-content-center p-4">
 
+
             @auth <!--Esto lo mostrara solo a los usuarios registrados-->
             <a href="{{route('bars.create')}}"class="btn btn-primary">Register your bar here!</a>
             @else
             <p>Only registered users can upload bars and see the whole collection
                 <a href="{{route('register')}}"> Register here now!</a>
             </p>
+
 
             @endauth
             </div>

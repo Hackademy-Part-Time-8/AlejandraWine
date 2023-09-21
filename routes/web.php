@@ -21,7 +21,7 @@ Route::get('/',[HomeController::class, 'home'])->name('home');
 
 
 Route::get('/home', function(){
-    return redirect()->route('index');
+    return redirect()->route('home');
 })->name('home');
 
 

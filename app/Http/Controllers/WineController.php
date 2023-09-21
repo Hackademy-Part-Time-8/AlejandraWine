@@ -6,6 +6,7 @@ use App\Models\Wine;
 use App\Models\Bar;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class WineController extends Controller
 {
@@ -77,7 +78,19 @@ class WineController extends Controller
     public function show(Wine $wine)
     {
         //
-        return view('wines.show',compact('wine'));
+        try{
+            $host = 'api.frankfurter.app';
+            $operation = 'latest';
+            $endpoint = "https://$host/$operation";
+            $response = Http::withoutVerifying()->get($endpoint,['to'=>'USD,GBP,CHF,JPY','amount'=>$wine['price']
+        ]);
+            $json=$response->json();
+            $rates = $json['rates'];
+
+        }catch(Exception $e){return view('wines.show',compact('wine'));
+
+
+        }return view('wines.show',compact('wine','rates'));
     }
 
     /**

@@ -21,10 +21,22 @@
                 </p>
                 <p class= "card-text">{{$wine->winery}}</p>
                 <p class= "card-text">{{$wine->price}} $</p>
+                @isset($rates)
+                    <a href="javascript:verConversiones()" class='btn btn-primary' alt='Show rates'><i class="bi bi-caret-down-fill"></i></a>
+                    <div id='divConversiones' style='display:none'>
+                         @foreach ($rates as $key => $rate )
+                    {{$key . '' . $rate}}
+
+                    @endforeach
+                    </div>
+
+                @endisset
+
+
                 <p class= "card-text">{{$wine->vol}}% </p>
 
 
-                
+
             </div>
         </div>
         </div>
@@ -44,4 +56,16 @@
         <a href="{{route('wine.index')}}" class="btn btn-primary">Return</a>
 
         </div>
+<script>
+    function verConversiones(){
+        let obj = document.getElementById('divConversiones');
+        if (obj){
+            if (obj.style.display == 'none'){
+                obj.style.display = 'block';
+            }else{
+                obj.style.display= 'none';
+            }
+        }
+    }
+</script>
 @endsection

@@ -3,6 +3,13 @@
 @section('title','Ver Bar')
 
 @section('content')
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+crossorigin=""/>
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+crossorigin=""></script>
         <h1 class="text-center">Show bar</h1>
         <div class="row d-flex justify-content-center">
 
@@ -29,6 +36,7 @@
         </div>
 
         </div>
+        <div id="map" class='bg-primary' style='width:100%;height:400px;max-height:400px'></div>
         <div class="d-flex justify-content-center">
             @auth
             @if (isset($bar->user)&& Auth::user()->id ==$bar->user->id)
@@ -43,4 +51,16 @@
         <a href="{{route('bars.index')}}" class="btn btn-primary">Return</a>
 
         </div>
+        <script>
+            var map = L.map('map').setView([{{$bar->latitude}},{{$bar->longitude}}], 13);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        L.marker([{{$bar->latitude}},{{$bar->longitude}}]).addTo(map)
+            .bindPopup('Aqui estamos')
+            .openPopup();
+        </script>
+
 @endsection
