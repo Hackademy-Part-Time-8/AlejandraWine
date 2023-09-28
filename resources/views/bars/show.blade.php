@@ -24,11 +24,11 @@
                         aria-label="{{ $bar->name }}"></button>
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
+                    <div class="carousel-item active ">
                         <img src="{{ $bar->image }}" class="d-block w-100" alt="{{ $bar->name }}">
                     </div>
                     @foreach ($bar->images as $image)
-                        <div class="carousel-item">
+                        <div class="carousel-item ">
                             <img src="{{ $image->image }}" class="d-block w-100" alt="...">
                         </div>
                     @endforeach
@@ -52,9 +52,9 @@
 
             <div class="description-map ">
 
-                <div class="description">
+                <div>
                     <h1 class="text-center">{{ $bar->name }}</h1>
-                    <p>{{ $bar->description }}
+                    <p class="text-center">{{ $bar->description }}
                     <p>
                         @isset($bar->user)
                             <small style="font-size: 0.5rem">Uploaded by: {{ $bar->user->name }}</small>

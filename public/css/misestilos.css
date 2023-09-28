@@ -84,6 +84,7 @@ width:55vw ;
     width: 40vw;
     height:40vh ;
     margin: 1rem;
+    border-radius: 10px;
 }
 
 .button-container{
@@ -91,4 +92,55 @@ width:55vw ;
     align-items: center;
     justify-content: space-around;
 
+}
+.container-index{
+    display: flex;
+    width: 100%;
+}
+.container-cards-index{
+display: grid;
+grid-template-columns: repeat(2, 18vw);
+grid-template-rows: repeat(2, 50vh);
+grid-column-gap: 5px;
+grid-row-gap: 5px;
+width: 65%;
+
+}
+.cards-index{
+    display: flex;
+    flex-direction: column;
+    width: 18vw;
+    height: 50vh;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    border: #3c39394c 1px solid;
+    background-color: #EFEFEF;
+
+
+}
+.img-card-index{
+    height: 50%;
+    border-radius: 20px;
+}
+.img-card-index img{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    width: 100%;
+    height: 100%;
+}
+.info-card-index{
+    height: 50%;
+    padding: 1.5rem;
+}
+.container-map-index{
+    width: 100%;
+    height: 150vh;
+    padding-left: 1rem;
+
+}
+.mapa-index{
+width: 100%;
+height: 100%;
+border-radius: 2rem;
+box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
 }

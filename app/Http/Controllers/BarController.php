@@ -47,9 +47,9 @@ class BarController extends Controller
         Paginator::useBootstrapFive();
         $user = Auth::user();
         if (!is_null($user)) {
-            $bares = Bar::orderBy('name')->paginate(env('APP_PAGE', 12));
+            $bares = Bar::orderBy('name')->paginate(env('APP_PAGE', 6));
         } else {
-            $bares = Bar::orderByDesc('id')->limit(4)->get();
+            $bares = Bar::orderByDesc('id')->limit(2)->get();
         }
 
         foreach ($bares as $bar) {
@@ -83,7 +83,7 @@ class BarController extends Controller
     }
     public function proposals(User $user)
     {
-        $bares = Bar::whereBelongsTo($user)->paginate(env('APP_PAGE', 12));
+        $bares = Bar::whereBelongsTo($user)->paginate(env('APP_PAGE', 6));
         foreach ($bares as $bar) {
             if (!isset($bar->image) || ($bar->image == '')) {
                 $bar->image = asset('img/default.png');

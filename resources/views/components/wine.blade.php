@@ -8,7 +8,7 @@
     @endif
         <div class="card-body">
             <h5 class="card-title">{{$wine->name}}</h5>
-            <p class="card-text">{{$wine->description}}</p>
+            <p class="card-text text-truncate" style="height:3rem;">{{$wine->description}}</p>
 
             <a href="{{route('wine.show',$wine->id)}}" class="btn btn-primary">Go to wine</a>
         </div>
