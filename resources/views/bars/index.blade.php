@@ -29,7 +29,7 @@
         @endif
             <div class="card-body">
                 <h5 class="card-title">{{$bar->name}}</h5>
-                <p class="card-text">{{$bar->description}}</p>
+                <p class="card-text- truncate">{{$bar->description}}</p>
 
                 <a href="{{route('bars.show',$bar->id)}}" class="btn btn-primary">Go to bar</a>
                 @isset($bar->user)

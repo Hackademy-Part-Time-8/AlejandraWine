@@ -62,4 +62,33 @@ fill: #692121;
     background-color:#e6e6e6d4 ;
     color: #3c3939;
 }
+/*SHOW BAR*/
+.container-show{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.carousel-show{
+width:55vw ;
 
+}
+.description-map{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+.map-show{
+    width: 40vw;
+    height:40vh ;
+    margin: 1rem;
+}
+
+.button-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
