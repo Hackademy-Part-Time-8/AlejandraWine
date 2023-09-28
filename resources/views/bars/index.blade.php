@@ -4,6 +4,7 @@
 
 @section('content')
 
+
         @if (isset($user)&&(Auth::user()!==null)&&($user->id == Auth::user()->id))
         <h1>My contributions</h1>
         @else
@@ -18,7 +19,7 @@
         <x-message code="{{Session ::get ('code')}}" message="{{Session::get('message')}}"/>
 
         <div class=row>
-        @foreach ($bares as $bar)
+        @foreach ($bares as $key => $bar)
         <div class="col-3 py-2 d-flex align-items-stretch">
         <div class="card" style="width: 18rem;">
         @if(isset($bar ->image) && ($bar->image != ''))
@@ -40,6 +41,7 @@
             </div>
         </div>
         </div>
+
         @endforeach
         </div>
         <div class = "d-flex justify-content-center p-4">
@@ -81,6 +83,22 @@
              </ul>
              </div>
             @endisset
+            <h2>Locations</h2>
+
+
+            <div id="map" class='bg-primary' style='width:100%;height:400px;max-height:400px;margin-bottom:100px'></div>
+
+            <script>
+                var map = L.map('map').setView([40.4073813, -3.9], 6);
+
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            L.marker([51.5, -0.09]).addTo(map)
+                .bindPopup('Aqui estamos')
+                .openPopup();
+            </script>
 
 
 @endsection

@@ -16,6 +16,59 @@ crossorigin=""></script>
         <div class="col-3 py-2 ">
         <div class="card" style="width: 18rem;">
             <img src="{{$bar->image}}" class="card-img-top" alt="{{$bar->name}}">
+
+
+            <!-- Carusel Bar Images -->
+
+            <div id="carouselImgs" class="carousel slide"><!--max-height and overflow hidden -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselImgs" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="{{ $bar->name }}"></button>
+                    @foreach ($bar->images as $key=>$image)
+                    <button type="button" data-bs-target="#carouselImgs" data-bs-slide-to="{{($key + 1)}}"
+                        aria-label="{{ $bar->name }}"></button>
+                    @endforeach
+                    <button type="button" data-bs-target="#carouselImgs" data-bs-slide-to="2"
+                        aria-label="{{ $bar->name }}"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{{ $bar->image }}" class="d-block w-100" alt="{{ $bar->name }}">
+                    </div>
+                    @foreach ($bar->images as $image)
+                        <div class="carousel-item">
+                            <img src="{{ $image->image }}" class="d-block w-100" alt="...">
+                        </div>
+                    @endforeach
+
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselImgs"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselImgs"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="card-body">
                 <h5 class="card-title">{{$bar->name}}</h5>
                 <p class="card-text">{{$bar->description}}</p>

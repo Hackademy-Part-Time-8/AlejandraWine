@@ -16,4 +16,7 @@ class Bar extends Model
     public function wines(){
         return $this->belongsToMany(Wine::class, 'bar_wine');
     }
+    public function images(){
+        return $this->hasMany(Image::class);
+    }
 }

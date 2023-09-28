@@ -22,21 +22,22 @@ Route::get('/',[HomeController::class, 'home'])->name('home');
 
 Route::get('/home', function(){
     return redirect()->route('home');
-})->name('home');
+})->name('home2');
 
 
-Route::get('/bar',[BarController::class, 'index'])->name('bars.index');
+Route::get('/bars',[BarController::class, 'index'])->name('bars.index');
 //ahora solo las de este grupo sn accesibles a auth=usuarios registrados
 Route::group(['middleware' => 'auth'],function(){
-    Route::get('/bar/create',[BarController::class,'create'])->name('bars.create');
-    Route::post('/bar/create',[BarController::class, 'store'])->name('bars.store');
-    Route::get('/bar/edit/{bar}',[BarController::class,'edit'])->name('bars.edit');
-    Route::post('/bar/update/{bar}',[BarController::class, 'update'])->name('bars.update');
-    Route::post('/bar/delete/{bar}',[BarController::class, 'delete'])->name('bars.delete');
+    Route::get('/bars/create',[BarController::class,'create'])->name('bars.create');
+    Route::post('/bars/create',[BarController::class, 'store'])->name('bars.store');
+    Route::get('/bars/edit/{bar}',[BarController::class,'edit'])->name('bars.edit');
+    Route::post('/bars/update/{bar}',[BarController::class, 'update'])->name('bars.update');
+    Route::post('/bars/delete/{bar}',[BarController::class, 'delete'])->name('bars.delete');
 
 });
-Route::get ('/bar/proposals/{user}',[BarController::class,'proposals'])->name('bars.proposals');
-Route::get('/bar/{bar}',[BarController::class,'show'])->name('bars.show');//antes el parametro era id, pero para hacer la dependency injection lo cambio por el nombre de la variable del modelo
+Route::get ('/bars/proposals/{user}',[BarController::class,'proposals'])->name('bars.proposals');
+Route::get('/bars/{bar}',[BarController::class,'show'])->name('bars.show');//antes el parametro era id, pero para hacer la dependency injection lo cambio por el nombre de la variable del modelo
+Route::get('/bar/{name}',[BarController::class,'friendly'])->name('bars.friendly');
 
 Route::resource('/wine',WineController::class)->parameters(['wines']);
 
