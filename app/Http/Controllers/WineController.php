@@ -8,6 +8,7 @@ use App\Http\Controllers\BarController;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 class WineController extends Controller
 {
@@ -78,20 +79,27 @@ class WineController extends Controller
      */
     public function show(Wine $wine)
     {
-        //
-        try{
+        try {
+            // Obtener las imágenes
+            $imagenes = [
+                asset('img/img/2.png'),
+                asset('img/img/3.png'),
+                asset('img/img/4.png'),
+            ];
+
+            // Obtener las tasas de cambio
             $host = 'api.frankfurter.app';
             $operation = 'latest';
             $endpoint = "https://$host/$operation";
-            $response = Http::withoutVerifying()->get($endpoint,['to'=>'USD,GBP,CHF,JPY','amount'=>$wine['price']
-        ]);
-            $json=$response->json();
+            $response = Http::withoutVerifying()->get($endpoint, ['to' => 'USD,GBP,CHF,JPY', 'amount' => $wine['price']]);
+            $json = $response->json();
             $rates = $json['rates'];
 
-        }catch(Exception $e){return view('wines.show',compact('wine'));
-
-
-        }return view('wines.show',compact('wine','rates'));
+            return view('wines.show', compact('wine', 'rates', 'imagenes'));
+        } catch (Exception $e) {
+            // Manejar el error como desees
+            return view('wines.show', compact('wine'));
+        }
     }
 
     /**

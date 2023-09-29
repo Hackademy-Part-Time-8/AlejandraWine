@@ -33,7 +33,7 @@
                     </a>
                     <div class="info-card-index">
                         <h5>{{ $bar->name }}</h5>
-                        <p>{{ $bar->description }}</p>
+                        <p class="text-truncate">{{ $bar->description }}</p>
                         <a href="{{ route('bars.show', $bar->id) }}">Go to bar</a>
                         @isset($bar->user)
                             <br>

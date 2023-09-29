@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>Our wine Selection</h1>
+<h1>Our Wine Selection</h1>
 <x-message code="{{Session ::get ('code')}}" message="{{Session::get('message')}}"/>
 <div id="divScroll"class=row>
 @foreach ($wines as $wine)

@@ -11,7 +11,7 @@
             <h5 class="card-title">{{$bar->name}}</h5>
             <p class="card-text">{{$bar->description}}</p>
 
-            <a href="{{route('bars.show',$bar->id)}}" class="btn btn-primary">Go to bar</a>
+            <a href="{{route('bars.show',$bar->id)}}" class="botones">Go to bar</a>
         </div>
     </div>
     </div>

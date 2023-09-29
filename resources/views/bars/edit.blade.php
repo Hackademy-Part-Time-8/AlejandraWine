@@ -62,7 +62,7 @@
                 <input class="form-check-input" type="checkbox" value="S" id="borrarimg" name="borrarimg">Delete
                 picture
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="botones">Submit</button>
         </form>
         <script>
             const dropzone = document.getElementById('dropzone');

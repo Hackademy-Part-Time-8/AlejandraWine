@@ -5,7 +5,7 @@
 @section('content')
     <div class="wine-show-container">
         <div class="wine-picture-container">
-            <img src="{{ $wine->image }}" alt="{{ $wine->name }}">
+            <div id="imagenAleatoria"></div>
         </div>
         <div class="wine-description">
             <div class="wine-info-card">
@@ -15,7 +15,7 @@
                     <p>
                         @foreach ($wine->bars as $bar)
                             <span class="badge text-bg-primary">
-                                <a href="{{ route('bars.show', $bar) }}">{{ $bar->name }}</a></span>
+                                <a style="text-decoration: none" class='text-white 'href="{{ route('bars.show', $bar) }}">{{ $bar->name }}</a></span>
                         @endforeach
                     </p>
 
@@ -29,12 +29,12 @@
                             onsubmit="return confirmar ('Are you sure you would like to delete this wine?','Notification');">
                             @method('DELETE')
                             @csrf
-                            <button type="submit" class="btn btn-primary">Delete</button>
+                            <button type="submit" class="botones">Delete</button>
                         </form>
 
-                        <a href="{{ route('wine.edit', $wine->id) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ route('wine.edit', $wine->id) }}" class="botones">Edit</a>
                     @endauth
-                    <a href="{{ route('wine.index') }}" class="btn btn-primary">Return</a>
+                    <a href="{{ route('wine.index') }}" class="botones">Return</a>
 
                 </div>
             </div>
@@ -55,6 +55,20 @@
 
     </div>
 
+
+    <script>
+        var imagenes = @json($imagenes);
+console.log(imagenes)
+        function mostrarImagenAleatoria() {
+            var indiceAleatorio = Math.floor(Math.random() * imagenes.length);
+            var imagenAleatoria = imagenes[indiceAleatorio];
+
+            // Mostrar la imagen en el elemento con id "imagenAleatoria"
+            document.getElementById('imagenAleatoria').innerHTML = '<img src="' + imagenAleatoria + '" alt="Imagen Aleatoria">';
+        }
+
+        mostrarImagenAleatoria(); // Mostrar una imagen aleatoria al cargar la página
+    </script>
     <script>
         function verConversiones() {
             let obj = document.getElementById('divConversiones');

@@ -32,6 +32,6 @@
     <input type="checkbox" class="form-check-input" id="check" name = "check">
     <label class="form-check-label" for="exampleCheck1">"I agree to the terms and conditions."</label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="botones">Submit</button>
 </form>
 @endsection

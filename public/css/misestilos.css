@@ -4,6 +4,7 @@ body{
     background-color: #EFEFEF;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
+
 .text-red{
     color: #8B3030;
 }
@@ -207,6 +208,13 @@ li{
 }
 .wine-picture-container{
     width: 40%;
+    height: 70%;
+
+}
+.wine-picture-container img {
+    padding: 1rem;
+    width: 80%;
+    height: 80%;
 
 }
 .wine-description{
@@ -251,5 +259,22 @@ width: 2vw;
     width: 100%;
 
 }
+
+.botones {
+    -webkit-border-radius: 10;
+    -moz-border-radius: 10;
+    border-radius: 10px;
+    color: #851907c9;
+    background: #ffffff00;
+    padding: 5px 10px 5px 10px;
+    border: solid #851907c9 2px;
+    text-decoration: none;
+  }
+
+  .botones:hover {
+    background: #851907c9;
+    color: white;
+    text-decoration: none;
+  }
 
 

@@ -76,13 +76,13 @@
                             <form method='POST' action="{{ route('bars.delete', $bar->id) }}"
                                 onsubmit="return confirmar ('Are you sure you would like to delete this bar?','Notification');">
                                 @csrf
-                                <button type="submit" class="btn btn-primary">Delete</button>
+                                <button type="submit" class="botones">Delete</button>
                             </form>
 
-                            <a href="{{ route('bars.edit', $bar->id) }}" class="btn btn-primary">Edit</a>
+                            <a href="{{ route('bars.edit', $bar->id) }}" class="botones">Edit</a>
                         @endif
                     @endauth
-                    <a href="{{ route('bars.index') }}" class="btn btn-primary">Return</a>
+                    <a href="{{ route('bars.index') }}" class="botones">Return</a>
                 </div>
             </div>
             <script>
