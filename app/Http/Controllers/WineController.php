@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Wine;
 use App\Models\Bar;
+use App\Http\Controllers\BarController;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -100,7 +101,7 @@ class WineController extends Controller
     {
         //
         $bars =  Bar::orderBy('name')->get();
-        return view('wines.edit',compact('wine'));
+        return view('wines.edit',compact('wine','bars'));
     }
 
     /**
