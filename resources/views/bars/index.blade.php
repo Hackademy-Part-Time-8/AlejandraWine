@@ -17,20 +17,22 @@
 
 
     <x-message code="{{ Session::get('code') }}" message="{{ Session::get('message') }}" />
-
+    <script>
+        var map = L.map('map').setView([40.4073813, -3.9], 5);
+    </script>
     <div class="container-index">
         <div class="container-cards-index">
             @foreach ($bares as $key => $bar)
-            <div class="cards-index">
-                <a href="{{ route('bars.show', $bar->id) }}" class="img-card-index">
-                    @if (isset($bar->image) && $bar->image != '')
-                    <img src="{{ $bar->image }}" class="card-img-top" alt="{{ $bar->name }}">
-                @else
-                    <img src="{{ asset('img/wineinline.jpg') }}" class="card-img-top" alt="{{ $bar->name }}">
-                @endif
-                </a>
-                <div class="info-card-index">
-                    <h5>{{ $bar->name }}</h5>
+                <div class="cards-index">
+                    <a href="{{ route('bars.show', $bar->id) }}" class="img-card-index">
+                        @if (isset($bar->image) && $bar->image != '')
+                            <img src="{{ $bar->image }}" class="card-img-top" alt="{{ $bar->name }}">
+                        @else
+                            <img src="{{ asset('img/wineinline.jpg') }}" class="card-img-top" alt="{{ $bar->name }}">
+                        @endif
+                    </a>
+                    <div class="info-card-index">
+                        <h5>{{ $bar->name }}</h5>
                         <p>{{ $bar->description }}</p>
                         <a href="{{ route('bars.show', $bar->id) }}">Go to bar</a>
                         @isset($bar->user)
@@ -40,8 +42,17 @@
                             <br>
                         @endisset
 
+                    </div>
                 </div>
-            </div>
+                <script>
+                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
+
+                    L.marker([51.5, -0.09]).addTo(map)
+                        .bindPopup('Aqui estamos')
+                        .openPopup();
+                </script>
             @endforeach
         </div>
 
@@ -49,21 +60,6 @@
             <div id="map" class="mapa-index"></div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <div class="d-flex justify-content-center p-4">
 
@@ -100,24 +96,14 @@
                     @endif
                 @endfor
                 <li class="page-item">
-                    <a class="page-link" href="{{ '?' . $bares->getPageName () . '=' . $bares->lastPage()}}"rel="next"
+                    <a class="page-link" href="{{ '?' . $bares->getPageName() . '=' . $bares->lastPage() }}"rel="next"
                         aria-label="Ultimo">›</a>
                 </li>
             </ul>
         </div>
     @endisset
 
-    <script>
-        var map = L.map('map').setView([40.4073813, -3.9], 6);
 
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        L.marker([51.5, -0.09]).addTo(map)
-            .bindPopup('Aqui estamos')
-            .openPopup();
-    </script>
 
 
 @endsection
