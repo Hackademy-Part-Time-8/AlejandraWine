@@ -2,6 +2,6 @@
 
 @section('content')
 
-<x-carruselhome/>
+<x-1container/>
 
 @endsection

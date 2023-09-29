@@ -25,7 +25,7 @@
     <textarea name="description" class="form-control" id="description">{{$wine->description}}</textarea>
     <div id="descriptionHelp" class="form-text">Describe your wine in a few words.Try to be as original as possible so you can stand out!</div>
   </div>
-  <div class="mb-3 d-flex row">
+<div>
     <label for="bars" class="form-label">Where to find it</label>
     @foreach ($bars as $bar)
     <div class="form-check col">
