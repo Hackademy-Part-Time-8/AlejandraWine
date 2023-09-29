@@ -3,6 +3,9 @@ body{
   background-color: #e3dece38;
   font-family: 'Edu SA Beginner', cursive;
 }
+li{
+    list-style: none;
+}
 .cabecera{
   background-color: #EFEFEF;
   color: #201F1F;
@@ -11,9 +14,7 @@ body{
 .logo{
   height: 4em;
 }
-footer{
-  height: var(--footerheight);
-}
+
 main{
   margin-bottom:var(--footerheight)
 }

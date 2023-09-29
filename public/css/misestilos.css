@@ -115,22 +115,36 @@ width: 65%;
     border-radius: 20px;
     border: #3c39394c 1px solid;
     background-color: #EFEFEF;
+    overflow: hidden;
+    position: relative;
+
+}
+
+.cards-index:hover .img-card-index img{
+    transform: scale(1.5);
 
 
 }
 .img-card-index{
     height: 50%;
-    border-radius: 20px;
+    height: 30vh;
+    overflow: hidden;
+
 }
 .img-card-index img{
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease;
+
+
 }
 .info-card-index{
     height: 50%;
     padding: 1.5rem;
+
 }
 .container-map-index{
     width: 100%;
@@ -143,4 +157,43 @@ width: 100%;
 height: 100%;
 border-radius: 2rem;
 box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
+}
+
+.container-footer{
+    width: 98.9vw;
+    display: flex;
+    border-top: #ffffff30 1px solid;
+    background-color: #555252ce;
+    color: white;
+
+}
+.contact-container{
+    width: 48vw;
+    padding: 1vw;
+}
+
+.copy-redes-container{
+    width: 50vw;
+
+}
+.redes-footer{
+    display: flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70%;
+    gap: 1.5rem;
+}
+
+.redes-footer img{
+    width:4vw;
+
+}
+.copy-footer{
+    display: flex;
+    justify-content: center;
+    align-items: first baseline;
+}
+li{
+    list-style: none;
 }

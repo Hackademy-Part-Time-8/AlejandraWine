@@ -22,13 +22,13 @@
         <div class="container-cards-index">
             @foreach ($bares as $key => $bar)
             <div class="cards-index">
-                <div class="img-card-index">
+                <a href="{{ route('bars.show', $bar->id) }}" class="img-card-index">
                     @if (isset($bar->image) && $bar->image != '')
                     <img src="{{ $bar->image }}" class="card-img-top" alt="{{ $bar->name }}">
                 @else
                     <img src="{{ asset('img/wineinline.jpg') }}" class="card-img-top" alt="{{ $bar->name }}">
                 @endif
-                </div>
+                </a>
                 <div class="info-card-index">
                     <h5>{{ $bar->name }}</h5>
                         <p>{{ $bar->description }}</p>

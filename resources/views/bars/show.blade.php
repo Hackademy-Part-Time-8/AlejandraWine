@@ -25,7 +25,7 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active ">
-                        <img src="{{ $bar->image }}" class="d-block w-100" alt="{{ $bar->name }}">
+                        <img src="{{ $bar->image }}" class="d-block w-100" " alt="{{ $bar->name }}">
                     </div>
                     @foreach ($bar->images as $image)
                         <div class="carousel-item ">

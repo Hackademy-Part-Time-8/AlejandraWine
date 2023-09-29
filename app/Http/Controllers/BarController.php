@@ -49,7 +49,7 @@ class BarController extends Controller
         if (!is_null($user)) {
             $bares = Bar::orderBy('name')->paginate(env('APP_PAGE', 6));
         } else {
-            $bares = Bar::orderByDesc('id')->limit(2)->get();
+            $bares = Bar::orderByDesc('id')->limit(6)->get();
         }
 
         foreach ($bares as $bar) {
