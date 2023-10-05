@@ -23,7 +23,7 @@
             <div id="map" class="mapa-index"></div>
         </div>
         <script>
-            var map = L.map('map').setView([40.4073813, -3.9], 5);
+            var map = L.map('map').setView([39.5, 3], 6);
         </script>
         <div class="container-cards-index">
             @foreach ($bares as $key => $bar)
