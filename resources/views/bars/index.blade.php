@@ -17,10 +17,14 @@
 
 
     <x-message code="{{ Session::get('code') }}" message="{{ Session::get('message') }}" />
-    <script>
-        var map = L.map('map').setView([40.4073813, -3.9], 5);
-    </script>
+
     <div class="container-index">
+        <div class="container-map-index">
+            <div id="map" class="mapa-index"></div>
+        </div>
+        <script>
+            var map = L.map('map').setView([40.4073813, -3.9], 5);
+        </script>
         <div class="container-cards-index">
             @foreach ($bares as $key => $bar)
                 <div class="cards-index">
@@ -44,21 +48,20 @@
 
                     </div>
                 </div>
+
                 <script>
                     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     }).addTo(map);
 
-                    L.marker([51.5, -0.09]).addTo(map)
-                        .bindPopup('Aqui estamos')
+                    L.marker([{{$bar->latitude}},{{$bar->longitude}}]).addTo(map)
+                        .bindPopup('{{$bar->name}}')
                         .openPopup();
                 </script>
             @endforeach
         </div>
 
-        <div class="container-map-index">
-            <div id="map" class="mapa-index"></div>
-        </div>
+
     </div>
 
     <div class="d-flex justify-content-center p-4">
