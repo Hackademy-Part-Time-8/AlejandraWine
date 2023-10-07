@@ -2,6 +2,6 @@
 
 @section('content')
 
-<x-1container/>
+<x-container/>
 
 @endsection
